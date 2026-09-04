@@ -9,6 +9,8 @@ You do not pick the item. That is the whole game. Sometimes you land in a vase
 next to the friend being chased. Sometimes you land in a statue in an empty
 corridor. Possession is a lottery, not a precision tool.
 
+![Haunting a level as loot](https://raw.githubusercontent.com/sweetbenefituz/I_Am_Item/main/images/demo.gif)
+
 ![Charging up](https://raw.githubusercontent.com/sweetbenefituz/I_Am_Item/main/images/screenshot-1.png)
 ![Ready to possess](https://raw.githubusercontent.com/sweetbenefituz/I_Am_Item/main/images/screenshot-2.png)
 
