@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>IamItem</AssemblyName>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <NoWarn>$(NoWarn);CS0649;CS0169</NoWarn>
+  </PropertyGroup>
+
+  <!-- Личные пути живут в Local.props, он в git не попадает. Образец —
+       Local.props.example. Собираем ВНЕ папки plugins: BepInEx сканирует её
+       рекурсивно и находит вторую копию DLL в obj. -->
+  <Import Project="Local.props" Condition="Exists('Local.props')" />
+
+  <PropertyGroup>
+    <RepoProfile Condition="'$(RepoProfile)' == ''">Default</RepoProfile>
+    <BepInExCore Condition="'$(BepInExCore)' == ''">$(APPDATA)\Thunderstore Mod Manager\DataFolder\REPO\profiles\$(RepoProfile)\BepInEx\core</BepInExCore>
+  </PropertyGroup>
+
+  <Target Name="CheckLocalPaths" BeforeTargets="Build">
+    <Error Condition="!Exists('$(GameManaged)\Assembly-CSharp.dll')"
+           Text="Не найдена игра: $(GameManaged). Скопируй src\Local.props.example в src\Local.props и впиши свои пути." />
+    <Error Condition="!Exists('$(BepInExCore)\BepInEx.dll')"
+           Text="Не найден BepInEx: $(BepInExCore). Проверь RepoProfile в src\Local.props." />
+  </Target>
+
+  <ItemGroup>
+    <!-- Открывает internal/private поля игры компилятору. Файл игры не
+         меняется, публицируется только копия в obj. -->
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx"><HintPath>$(BepInExCore)\BepInEx.dll</HintPath></Reference>
+    <Reference Include="0Harmony"><HintPath>$(BepInExCore)\0Harmony.dll</HintPath></Reference>
+
+    <Reference Include="Assembly-CSharp" Publicize="true"><HintPath>$(GameManaged)\Assembly-CSharp.dll</HintPath></Reference>
+
+    <Reference Include="PhotonUnityNetworking"><HintPath>$(GameManaged)\PhotonUnityNetworking.dll</HintPath></Reference>
+    <Reference Include="PhotonRealtime"><HintPath>$(GameManaged)\PhotonRealtime.dll</HintPath></Reference>
+    <Reference Include="Photon3Unity3D"><HintPath>$(GameManaged)\Photon3Unity3D.dll</HintPath></Reference>
+
+    <Reference Include="UnityEngine"><HintPath>$(GameManaged)\UnityEngine.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameManaged)\UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(GameManaged)\UnityEngine.PhysicsModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(GameManaged)\UnityEngine.IMGUIModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(GameManaged)\UnityEngine.TextRenderingModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(GameManaged)\UnityEngine.InputLegacyModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.AudioModule"><HintPath>$(GameManaged)\UnityEngine.AudioModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule"><HintPath>$(GameManaged)\UnityEngine.ParticleSystemModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.AnimationModule"><HintPath>$(GameManaged)\UnityEngine.AnimationModule.dll</HintPath></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(GameManaged)\Unity.TextMeshPro.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(GameManaged)\UnityEngine.UI.dll</HintPath></Reference>
+    <Reference Include="Unity.Postprocessing.Runtime"><HintPath>$(GameManaged)\Unity.Postprocessing.Runtime.dll</HintPath></Reference>
+  </ItemGroup>
+
+</Project>

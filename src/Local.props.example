@@ -1,0 +1,10 @@
+<Project>
+  <!-- Скопируй этот файл рядом под именем Local.props и впиши свои пути.
+       Local.props в git не попадает, см. .gitignore. -->
+  <PropertyGroup>
+    <!-- Папка Managed внутри установленной игры. -->
+    <GameManaged>C:\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed</GameManaged>
+    <!-- Имя профиля в Thunderstore Mod Manager, откуда брать BepInEx. -->
+    <RepoProfile>Default</RepoProfile>
+  </PropertyGroup>
+</Project>

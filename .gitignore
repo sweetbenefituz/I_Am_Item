@@ -1,0 +1,19 @@
+bin/
+obj/
+*.zip
+
+# Собирается pack.py, в репозитории не нужен.
+mod/IamItem.dll
+mod/README.md
+mod/CHANGELOG.md
+
+# Личные пути машины.
+src/Local.props
+
+# Внутренняя документация и исходник обложки, наружу не идут.
+/*_GDD.md
+/first_diz.md
+/ICON.jpg
+/screen1.png
+/screen2.png
+/screen3.png

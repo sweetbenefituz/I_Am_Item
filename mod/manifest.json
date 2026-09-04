@@ -1,0 +1,9 @@
+{
+  "name": "I_Am_Item",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/sweetbenefituz/I_Am_Item",
+  "description": "Die and possess a random valuable. Roll, jump, rattle, and ram monsters at speed. The item loses no money.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2100"
+  ]
+}
